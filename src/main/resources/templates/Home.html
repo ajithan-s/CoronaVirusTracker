@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>TamilNadu District Wise Corona Details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .fa:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+<script>
+    function redirect(url) {
+        window.open(url)
+    }
+</script>
+<div class="card text-white bg-dark mb-3" style="max-width: 100%;">
+    <div class="card-header"><h2><p class="text-center">TamilNadu District Wise COVID-19 Cases Details</p></h2></div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="jumbotron">
+                <h1 class="display-4" th:text="${totalCases}"></h1>
+                <p class="lead">This number of people affected by COVID-19 all over TamilNadu as of now.</p>
+                <hr class="my-4">
+                <h1 class="display-4" th:text="${totalDeathCases}"></h1>
+                <p class="lead">This number of death cases reported all over TamilNadu as of now.</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="jumbotron">
+                <h1 class="display-4" th:text="${totalActiveCases}"></h1>
+                <p class="lead">This number of people are suffering from COVID-19 all over TamilNadu as of now.</p>
+                <hr class="my-4">
+                <h1 class="display-4" th:text="${totalRecoveredCases}"></h1>
+                <p class="lead">This number of people recovered from COVID-19 all over TamilNadu as of now.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th>District Name</th>
+        <th>Total Cases</th>
+        <th>Active Cases</th>
+        <th>Recovered Cases</th>
+    </tr>
+    </thead>
+    <tr th:each="districtWiseDetail : ${districtWiseDetails}">
+        <td th:text="${districtWiseDetail.getDistrictName()}"></td>
+        <td th:text="${districtWiseDetail.getTotalCases()}"></td>
+        <td th:text="${districtWiseDetail.getActiveCases()}"></td>
+        <td th:text="${districtWiseDetail.getRecoveredCases()}"></td>
+    </tr>
+</table>
+<div class="container-fluid">
+    <div class="card text-white bg-dark mb-8" style="max-width: 100%;">
+        <div class="card-footer"><h5><p class="text-center">Created by AJITHAN</p></h5>
+            <h5 class="text-center" style="color: white">If you have any queries reach out to me through INSTAGRAM   <a href="javascript:void(0)" class="fa fa-instagram fa-3x" style="color: white" onclick="redirect('https://www.instagram.com/mr.ajithan/')"></a></h5>
+        </div>
+    </div>
+</div>
+</body>
+</html>
