@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -20,6 +23,12 @@ public class CoronaVirusTrackerService {
 
     public List<DistrictWiseData> getAllDistrictWiseDataList() {
         return allDistrictWiseDataList;
+    }
+    public String getDate() {
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        final Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1);
+        return (df.format(calendar.getTime())).toString();
     }
 
     @Autowired
@@ -39,16 +48,16 @@ public class CoronaVirusTrackerService {
                 extractedDataList.add(e.text().toString());
             }
             String[] overAllCasesDetails = extractedDataList.get(2).split(" ");
-            overAllCases.setOverAllTotalCases(Integer.parseInt(overAllCasesDetails[4]));
-            overAllCases.setOverAllDeathCases(Integer.parseInt(overAllCasesDetails[3]));
-            overAllCases.setOverAllActiveCases(Integer.parseInt(overAllCasesDetails[1]));
-            overAllCases.setOverAllRecoverdCases(Integer.parseInt(overAllCasesDetails[2]));
+           overAllCases.setOverAllTotalCases(Integer.parseInt(overAllCasesDetails[1]));
+            overAllCases.setOverAllDeathCases(Integer.parseInt(overAllCasesDetails[2]));
+            overAllCases.setOverAllActiveCases(Integer.parseInt(overAllCasesDetails[1])-(Integer.parseInt(overAllCasesDetails[2])+Integer.parseInt(overAllCasesDetails[3])));
+            overAllCases.setOverAllRecoverdCases(Integer.parseInt(overAllCasesDetails[3]));
             for(int i = 3;i<=36;i++){
                 DistrictWiseData districtWiseData = new DistrictWiseData();
                 String[] districtWiseDetailsData = extractedDataList.get(i).split(" ");
                 districtWiseData.setDistrictName(districtWiseDetailsData[0]);
-                districtWiseData.setTotalCases(Integer.parseInt(districtWiseDetailsData[4]));
-                districtWiseData.setActiveCases(Integer.parseInt(districtWiseDetailsData[1]));
+                districtWiseData.setTotalCases(Integer.parseInt(districtWiseDetailsData[1]));
+                districtWiseData.setActiveCases(Integer.parseInt(districtWiseDetailsData[1])-(Integer.parseInt(districtWiseDetailsData[2])+Integer.parseInt(districtWiseDetailsData[3])));
                 districtWiseData.setRecoveredCases(Integer.parseInt(districtWiseDetailsData[2]));
                 districtWiseData.setDeathCases(Integer.parseInt(districtWiseDetailsData[3]));
                 districtWiseDataList.add(districtWiseData);

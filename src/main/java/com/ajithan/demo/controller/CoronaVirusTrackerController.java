@@ -21,6 +21,7 @@ public class CoronaVirusTrackerController {
         model.addAttribute("totalDeathCases",overAllCases.getOverAllDeathCases());
         model.addAttribute("totalRecoveredCases",overAllCases.getOverAllRecoverdCases());
         model.addAttribute("totalActiveCases",overAllCases.getOverAllActiveCases());
+        model.addAttribute("yesterdayDate",coronaVirusTrackerService.getDate());
         return "Home";
     }
 }

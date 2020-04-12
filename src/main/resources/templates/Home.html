@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <title>TamilNadu District Wise Corona Details</title>
@@ -28,19 +28,23 @@
         <div class="col-6">
             <div class="jumbotron">
                 <h1 class="display-4" th:text="${totalCases}"></h1>
-                <p class="lead">This number of people affected by COVID-19 all over TamilNadu as of now.</p>
+                <p class="lead">This number of people affected by COVID-19 all over TamilNadu till <span th:text="${yesterdayDate}"></span>
+                </p>
                 <hr class="my-4">
                 <h1 class="display-4" th:text="${totalDeathCases}"></h1>
-                <p class="lead">This number of death cases reported all over TamilNadu as of now.</p>
+                <p class="lead">This number of death cases reported all over TamilNadu till <span th:text="${yesterdayDate}"></span>
+                </p>
             </div>
         </div>
         <div class="col-6">
             <div class="jumbotron">
                 <h1 class="display-4" th:text="${totalActiveCases}"></h1>
-                <p class="lead">This number of people are suffering from COVID-19 all over TamilNadu as of now.</p>
+                <p class="lead">This number of people are suffering from COVID-19 all over TamilNadu till <span th:text="${yesterdayDate}"></span>
+                </p>
                 <hr class="my-4">
                 <h1 class="display-4" th:text="${totalRecoveredCases}"></h1>
-                <p class="lead">This number of people recovered from COVID-19 all over TamilNadu as of now.</p>
+                <p class="lead">This number of people recovered from COVID-19 all over TamilNadu till <span th:text="${yesterdayDate}"></span>
+                </p>
             </div>
         </div>
     </div>
